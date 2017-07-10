@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.master');
 });
+
+Route::get('/sign-up', 'SiteController@signUpForm');
+Route::get('/sign-in', 'SiteController@signInForm');
