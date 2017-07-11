@@ -15,5 +15,10 @@ Route::get('/', function () {
     return view('layouts.master');
 });
 
-Route::get('/sign-up', 'SiteController@signUpForm');
-Route::get('/sign-in', 'SiteController@signInForm');
+Route::get('/sign-up', 'UserController@getSignUp');
+Route::post('/sign-up', [
+    'uses' => 'UserController@postSignUp',
+    'as' => 'sign-up',
+]);
+
+Route::get('/sign-in', 'UserController@getSignIn');
