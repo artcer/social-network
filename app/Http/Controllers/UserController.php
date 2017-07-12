@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 /**
@@ -16,11 +17,21 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     /**
-     * Renders new user sign up form
+     * Renders dashboard page
      *
      * @return Factory|View
      */
-    protected function getSignUp()
+    public function getDashboard()
+    {
+        return view('dashboard');
+    }
+
+    /**
+     * Renders new user sign up page
+     *
+     * @return Factory|View
+     */
+    public function getSignUp()
     {
         return view('user.sign-up');
     }
@@ -40,7 +51,9 @@ class UserController extends Controller
         $user->password = bcrypt($request['password']);
         $user->save();
 
-        return redirect()->back();
+        Auth::login($user);
+
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -48,8 +61,28 @@ class UserController extends Controller
      *
      * @return Factory|View
      */
-    protected function getSignIn()
+    public function getSignIn()
     {
         return view('user.sign-in');
+    }
+
+    /**
+     * Signs in user to system
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function postSignIn(Request $request)
+    {
+        $credentials = [
+            'email' => $request['email'],
+            'password' => $request['password'],
+        ];
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('dashboard');
+        }
+
+        return redirect()->back();
     }
 }
