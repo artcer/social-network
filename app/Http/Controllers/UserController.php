@@ -44,6 +44,12 @@ class UserController extends Controller
      */
     public function postSignUp(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users|max:255',
+            'password' => 'required|min:6|max:255',
+        ]);
+
         // TODO: find out how to load POST data to user model
         $user = new User();
         $user->name = $request['name'];
@@ -74,6 +80,11 @@ class UserController extends Controller
      */
     public function postSignIn(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
         $credentials = [
             'email' => $request['email'],
             'password' => $request['password'],
