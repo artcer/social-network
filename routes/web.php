@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [
     'uses' => 'UserController@getDashboard',
     'as' => 'dashboard',
+    'middleware' => 'App\Http\Middleware\RedirectIfNotAuthenticated',
 ]);
 
 // Sign up
