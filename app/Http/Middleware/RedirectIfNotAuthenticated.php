@@ -22,7 +22,7 @@ class RedirectIfNotAuthenticated
                 return response('Unauthorized', 401);
             }
 
-            return redirect()->route('sign-in');
+            return redirect()->route('sign.in');
         }
 
         return $next($request);

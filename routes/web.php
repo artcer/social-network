@@ -21,17 +21,21 @@ Route::get('/dashboard', [
     'as' => 'dashboard',
     'middleware' => 'App\Http\Middleware\RedirectIfNotAuthenticated',
 ]);
+Route::post('/create-post', [
+    'uses' => 'PostController@postCreatePost',
+    'as' => 'create.post',
+]);
 
 // Sign up
 Route::get('/sign-up', 'UserController@getSignUp');
 Route::post('/sign-up', [
     'uses' => 'UserController@postSignUp',
-    'as' => 'sign-up',
+    'as' => 'sign.up',
 ]);
 
 // Sign in
 Route::get('/sign-in', 'UserController@getSignIn');
 Route::post('/sign-in', [
     'uses' => 'UserController@postSignIn',
-    'as' => 'sign-in',
+    'as' => 'sign.in',
 ]);

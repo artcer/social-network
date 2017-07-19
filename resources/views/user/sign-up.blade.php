@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h3>Sign Up</h3>
-            <form action="{{ route('sign-up') }}" method="post">
+            <form action="{{ route('sign.up') }}" method="post">
                 {{ csrf_field() }}
                 <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                     <label class="control-label" for="name">Name</label>
