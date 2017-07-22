@@ -21,9 +21,17 @@ Route::get('/dashboard', [
     'as' => 'dashboard',
     'middleware' => 'App\Http\Middleware\RedirectIfNotAuthenticated',
 ]);
+
+// Posts
 Route::post('/create-post', [
     'uses' => 'PostController@postCreatePost',
     'as' => 'create.post',
+    'middleware' => 'App\Http\Middleware\RedirectIfNotAuthenticated',
+]);
+Route::get('/delete-post/{id}', [
+    'uses' => 'PostController@getDeletePost',
+    'as' => 'delete.post',
+    'middleware' => 'App\Http\Middleware\RedirectIfNotAuthenticated',
 ]);
 
 // Sign up

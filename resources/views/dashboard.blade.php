@@ -43,7 +43,7 @@
                             <a href="#">Like</a> |
                             <a href="#">Dislike</a> |
                             <a href="#">Edit</a> |
-                            <a href="#">Delete</a>
+                            <a href="{{ route('delete.post', ['id' => $post->id]) }}">Delete</a>
                         </div>
                     </article>
                 @endforeach

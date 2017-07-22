@@ -45,4 +45,19 @@ class PostController extends Controller
 
         return redirect()->route('dashboard')->with(compact('message'));
     }
+
+    /**
+     * Deletes specific post
+     *
+     * @param null|integer $id Post ID
+     * @return RedirectResponse
+     */
+    public function getDeletePost($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+        $message = 'Successfully deleted!';
+
+        return redirect()->route('dashboard')->with(compact('message'));
+    }
 }
