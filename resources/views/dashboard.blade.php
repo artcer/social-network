@@ -32,39 +32,21 @@
     <section class="row posts">
         <div class="col-md-6 col-md-offset-3">
             <header>
-                <h3>What ever people say...</h3>
-                <article class="post">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Aliquid autem cum dignissimos doloribus eum illum libero sit vero.
-                        Ab aperiam beatae consequatur deserunt illo itaque laboriosam nam sit sunt, velit.
-                    </p>
-                    <div class="info">
-                        Posted by Artūras on 16 Jul 2017
-                    </div>
-                    <div class="interaction">
-                        <a href="#">Like</a> |
-                        <a href="#">Dislike</a> |
-                        <a href="#">Edit</a> |
-                        <a href="#">Delete</a>
-                    </div>
-                </article>
-                <article class="post">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Aliquid autem cum dignissimos doloribus eum illum libero sit vero.
-                        Ab aperiam beatae consequatur deserunt illo itaque laboriosam nam sit sunt, velit.
-                    </p>
-                    <div class="info">
-                        Posted by Artūras on 16 Jul 2017
-                    </div>
-                    <div class="interaction">
-                        <a href="#">Like</a> |
-                        <a href="#">Dislike</a> |
-                        <a href="#">Edit</a> |
-                        <a href="#">Delete</a>
-                    </div>
-                </article>
+                <h3>What other people say...</h3>
+                @foreach ($posts as $post)
+                    <article class="post">
+                        <p>{{ $post->body }}</p>
+                        <div class="info">
+                            Posted by {{ $post->user->name }} on {{ $post->created_at->diffForHumans() }}
+                        </div>
+                        <div class="interaction">
+                            <a href="#">Like</a> |
+                            <a href="#">Dislike</a> |
+                            <a href="#">Edit</a> |
+                            <a href="#">Delete</a>
+                        </div>
+                    </article>
+                @endforeach
             </header>
         </div>
     </section>

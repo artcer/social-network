@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 /**
  * Class PostController
@@ -13,6 +15,16 @@ use Illuminate\Http\Request;
  */
 class PostController extends Controller
 {
+    /**
+     * Renders dashboard page
+     *
+     * @return Factory|View
+     */
+    public function getDashboard()
+    {
+        return view('dashboard', ['posts' => Post::all()]);
+    }
+
     /**
      * Creates new post
      *

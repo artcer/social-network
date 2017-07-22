@@ -17,16 +17,6 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     /**
-     * Renders dashboard page
-     *
-     * @return Factory|View
-     */
-    public function getDashboard()
-    {
-        return view('dashboard');
-    }
-
-    /**
      * Renders new user sign up page
      *
      * @return Factory|View
