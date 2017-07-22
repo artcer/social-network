@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    @include('includes.success-message')
     <section class="row new-post">
         <div class="col-md-6 col-md-offset-3">
             <header>
@@ -12,13 +13,14 @@
             </header>
             <form action="{{ route('create.post') }}" method="post">
                 {{ csrf_field() }}
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
                     <textarea id="body"
                               class="form-control"
                               name="body"
                               rows="5"
                               placeholder="Your Post"
-                    ></textarea>
+                    >{{ old('body') }}</textarea>
+                    <span class="help-block">{{ $errors->has('body') ? $errors->first('body') : '' }}</span>
                 </div>
                 <button type="submit" class="btn btn-primary">
                     Create Post
